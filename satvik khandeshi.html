@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satvik Khandeshi – Fresh, Crispy & Delicious</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  /* ========== CSS VARIABLES ========== */
+  :root {
+    --saffron:   #FF6B00;
+    --turmeric:  #FFC200;
+    --chili:     #E63946;
+    --leaf:      #2D9B4E;
+    --cream:     #FFF8EE;
+    --brown:     #5C3D1E;
+    --dark:      #1A0A00;
+    --light-org: #FFF0D6;
+    --shadow:    0 8px 32px rgba(255,107,0,0.15);
+    --rad:       16px;
+    --font-head: 'Baloo 2', cursive;
+    --font-body: 'Poppins', sans-serif;
+  }
+
+  /* ========== RESET ========== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+
+  /* ========== PAGE SYSTEM ========== */
+  .page { display: none; animation: fadeIn .4s ease; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ========== NAVBAR ========== */
+  nav {
+    position: sticky; top: 0; z-index: 1000;
+    background: var(--dark);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 70px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.4);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-head); font-size: 1.5rem; font-weight: 800;
+    color: var(--turmeric);
+  }
+  .nav-logo span { color: var(--saffron); }
+  .nav-logo-icon {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--saffron);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: #fff;
+  }
+  .nav-links { display: flex; gap: 6px; align-items: center; }
+  .nav-links a {
+    padding: 8px 14px; border-radius: 8px;
+    font-size: .88rem; font-weight: 500;
+    color: #ccc; transition: all .25s;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    background: var(--saffron); color: #fff;
+  }
+  .hamburger { display: none; cursor: pointer; color: var(--turmeric); font-size: 1.4rem; }
+  .mobile-menu {
+    display: none; flex-direction: column;
+    background: var(--dark); padding: 16px 5%; gap: 4px;
+  }
+  .mobile-menu a {
+    padding: 10px 14px; border-radius: 8px;
+    color: #ccc; font-weight: 500;
+    transition: all .25s;
+  }
+  .mobile-menu a:hover, .mobile-menu a.active {
+    background: var(--saffron); color: #fff;
+  }
+  .mobile-menu.open { display: flex; }
+
+  /* ========== HERO ========== */
+  .hero {
+    min-height: 92vh;
+    background: linear-gradient(135deg, #1A0A00 0%, #3D1C00 50%, #5C2E00 100%);
+    display: flex; align-items: center;
+    padding: 60px 5%;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(255,107,0,.18) 0%, transparent 65%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: .04;
+    background-image: repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%);
+    background-size: 20px 20px;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,194,0,.15); border: 1px solid rgba(255,194,0,.3);
+    color: var(--turmeric); padding: 6px 16px; border-radius: 50px;
+    font-size: .8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: var(--font-head); font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 800; line-height: 1.1; color: #fff;
+    margin-bottom: 20px;
+  }
+  .hero h1 em { color: var(--turmeric); font-style: normal; display: block; }
+  .hero p {
+    color: rgba(255,255,255,.75); font-size: 1.05rem; line-height: 1.7;
+    margin-bottom: 36px; max-width: 460px;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--saffron); color: #fff;
+    padding: 14px 32px; border-radius: 50px; font-weight: 700;
+    font-size: .95rem; border: none; cursor: pointer;
+    transition: all .3s; display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 6px 24px rgba(255,107,0,.45);
+  }
+  .btn-primary:hover { background: #e55d00; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,107,0,.55); }
+  .btn-secondary {
+    background: transparent; color: #fff;
+    padding: 14px 32px; border-radius: 50px; font-weight: 600;
+    font-size: .95rem; border: 2px solid rgba(255,255,255,.3); cursor: pointer;
+    transition: all .3s;
+  }
+  .btn-secondary:hover { border-color: var(--turmeric); color: var(--turmeric); }
+  .hero-visual {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    width: clamp(280px, 40vw, 520px);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-plate {
+    width: clamp(280px, 38vw, 480px); height: clamp(280px, 38vw, 480px);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(255,194,0,.25), rgba(255,107,0,.1));
+    border: 2px solid rgba(255,194,0,.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: clamp(120px, 22vw, 200px);
+    animation: float 4s ease-in-out infinite;
+    position: relative;
+  }
+  .hero-plate::after {
+    content: '🌿';
+    position: absolute; bottom: 20%; right: 10%;
+    font-size: .35em; animation: float 3s ease-in-out infinite reverse;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-18px) rotate(2deg); }
+  }
+
+  /* ========== SECTION COMMONS ========== */
+  .section { padding: 80px 5%; }
+  .section-alt { background: var(--light-org); }
+  .sec-header { text-align: center; margin-bottom: 56px; }
+  .sec-label {
+    display: inline-block;
+    color: var(--saffron); font-size: .78rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .sec-title {
+    font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800; color: var(--brown); line-height: 1.2;
+  }
+  .sec-title span { color: var(--saffron); }
+  .sec-sub { color: #666; margin-top: 12px; font-size: .95rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+  /* ========== FEATURED SNACKS ========== */
+  .snacks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 28px;
+  }
+  .snack-card {
+    background: #fff; border-radius: var(--rad);
+    overflow: hidden; box-shadow: var(--shadow);
+    transition: all .35s; cursor: pointer;
+    border: 2px solid transparent;
+  }
+  .snack-card:hover { transform: translateY(-8px); border-color: var(--turmeric); box-shadow: 0 16px 40px rgba(255,107,0,.2); }
+  .snack-thumb {
+    height: 180px; display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+    background: linear-gradient(135deg, var(--light-org), #ffe7c0);
+    position: relative; overflow: hidden;
+  }
+  .snack-thumb::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.5), transparent 60%);
+  }
+  .snack-badge {
+    position: absolute; top: 12px; right: 12px; z-index: 2;
+    background: var(--chili); color: #fff;
+    padding: 4px 10px; border-radius: 50px; font-size: .7rem; font-weight: 700;
+  }
+  .snack-body { padding: 20px; }
+  .snack-name {
+    font-family: var(--font-head); font-size: 1.15rem; font-weight: 700;
+    color: var(--brown); margin-bottom: 6px;
+  }
+  .snack-desc { color: #777; font-size: .85rem; line-height: 1.6; margin-bottom: 16px; }
+  .snack-foot { display: flex; align-items: center; justify-content: space-between; }
+  .snack-price {
+    font-family: var(--font-head); font-size: 1.4rem; font-weight: 800; color: var(--saffron);
+  }
+  .snack-price small { font-size: .65rem; color: #aaa; font-weight: 400; font-family: var(--font-body); }
+  .add-btn {
+    background: var(--saffron); color: #fff;
+    border: none; padding: 8px 18px; border-radius: 50px;
+    font-weight: 600; font-size: .82rem; cursor: pointer;
+    transition: all .25s;
+  }
+  .add-btn:hover { background: #e55d00; transform: scale(1.05); }
+
+  /* ========== REVIEWS ========== */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .review-card {
+    background: #fff; border-radius: var(--rad);
+    padding: 28px; box-shadow: var(--shadow);
+    border-left: 4px solid var(--turmeric);
+    transition: transform .3s;
+  }
+  .review-card:hover { transform: translateY(-4px); }
+  .stars { color: var(--turmeric); font-size: 1rem; margin-bottom: 14px; }
+  .review-text { color: #555; font-size: .9rem; line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .reviewer { display: flex; align-items: center; gap: 12px; }
+  .avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--light-org); display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+  }
+  .reviewer-name { font-weight: 700; color: var(--brown); font-size: .9rem; }
+  .reviewer-role { color: #aaa; font-size: .78rem; }
+
+  /* ========== STATS ========== */
+  .stats-bar {
+    background: var(--saffron);
+    padding: 40px 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px; text-align: center;
+  }
+  .stat-item { color: #fff; }
+  .stat-num {
+    font-family: var(--font-head); font-size: 2.4rem; font-weight: 800;
+    display: block; line-height: 1;
+  }
+  .stat-label { font-size: .82rem; opacity: .85; margin-top: 4px; }
+
+  /* ========== ABOUT ========== */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+  }
+  .about-visual {
+    background: linear-gradient(135deg, var(--light-org), #ffe7c0);
+    border-radius: 24px; padding: 40px;
+    text-align: center; font-size: 120px;
+    box-shadow: var(--shadow);
+    position: relative; overflow: hidden;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute; width: 200px; height: 200px;
+    background: var(--turmeric); opacity: .1; border-radius: 50%;
+    top: -60px; right: -60px;
+  }
+  .about-content h2 {
+    font-family: var(--font-head); font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 800; color: var(--brown); margin-bottom: 16px;
+  }
+  .about-content p { color: #666; line-height: 1.8; margin-bottom: 16px; font-size: .95rem; }
+  .values-list { margin-top: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .value-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: #fff; border-radius: 12px; padding: 16px;
+    box-shadow: 0 4px 16px rgba(255,107,0,.08);
+  }
+  .value-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--light-org); display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .value-text h4 { font-weight: 700; color: var(--brown); font-size: .9rem; margin-bottom: 4px; }
+  .value-text p { color: #888; font-size: .82rem; margin: 0; line-height: 1.5; }
+
+  /* ========== MENU ========== */
+  .menu-filter {
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 40px;
+  }
+  .filter-btn {
+    padding: 8px 22px; border-radius: 50px;
+    border: 2px solid var(--saffron); background: transparent;
+    color: var(--saffron); font-weight: 600; font-size: .85rem;
+    cursor: pointer; transition: all .25s;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--saffron); color: #fff;
+  }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px;
+  }
+  .menu-card {
+    background: #fff; border-radius: var(--rad);
+    overflow: hidden; box-shadow: var(--shadow);
+    transition: all .35s;
+  }
+  .menu-card:hover { transform: translateY(-6px); }
+  .menu-thumb {
+    height: 200px; background: linear-gradient(135deg, var(--light-org), #ffe7c0);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 90px; position: relative;
+  }
+  .menu-veg {
+    position: absolute; top: 12px; left: 12px;
+    width: 22px; height: 22px; border-radius: 4px;
+    border: 2px solid var(--leaf);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .menu-veg::after {
+    content: ''; width: 8px; height: 8px;
+    background: var(--leaf); border-radius: 50%;
+  }
+  .menu-tag {
+    position: absolute; bottom: 12px; right: 12px;
+    background: rgba(255,107,0,.9); color: #fff;
+    padding: 4px 12px; border-radius: 50px; font-size: .72rem; font-weight: 700;
+    backdrop-filter: blur(4px);
+  }
+  .menu-info { padding: 22px; }
+  .menu-name {
+    font-family: var(--font-head); font-size: 1.2rem; font-weight: 700;
+    color: var(--brown); margin-bottom: 8px;
+  }
+  .menu-desc { color: #777; font-size: .84rem; line-height: 1.6; margin-bottom: 18px; }
+  .menu-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .menu-price {
+    font-family: var(--font-head); font-size: 1.5rem; font-weight: 800;
+    color: var(--saffron);
+  }
+  .order-btn {
+    background: linear-gradient(135deg, var(--saffron), #e55d00);
+    color: #fff; border: none;
+    padding: 10px 20px; border-radius: 50px;
+    font-weight: 700; font-size: .85rem; cursor: pointer;
+    transition: all .3s; display: flex; align-items: center; gap: 6px;
+  }
+  .order-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255,107,0,.4); }
+
+  /* ========== GALLERY ========== */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .gallery-item {
+    background: linear-gradient(135deg, var(--light-org), #ffe7c0);
+    border-radius: 14px; overflow: hidden;
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 70px;
+    cursor: pointer; transition: all .3s;
+    position: relative; box-shadow: var(--shadow);
+  }
+  .gallery-item:hover { transform: scale(1.05); box-shadow: 0 12px 32px rgba(255,107,0,.25); }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: rgba(255,107,0,.75);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 1.5rem;
+    opacity: 0; transition: all .3s;
+    border-radius: inherit;
+  }
+  .gallery-item.tall { grid-row: span 2; aspect-ratio: auto; min-height: 320px; }
+  .gallery-item.wide { grid-column: span 2; aspect-ratio: auto; min-height: 200px; }
+
+  /* ========== ORDER FORM ========== */
+  .order-container {
+    max-width: 700px; margin: 0 auto;
+    background: #fff; border-radius: 24px;
+    padding: 48px; box-shadow: var(--shadow);
+    border: 2px solid var(--light-org);
+  }
+  .order-container h2 {
+    font-family: var(--font-head); font-size: 1.8rem; font-weight: 800;
+    color: var(--brown); margin-bottom: 8px;
+  }
+  .order-container p { color: #888; margin-bottom: 32px; font-size: .9rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-group { margin-bottom: 22px; }
+  .form-group label {
+    display: block; font-weight: 600; font-size: .85rem;
+    color: var(--brown); margin-bottom: 8px;
+  }
+  .form-group label span { color: var(--chili); }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 13px 16px;
+    border: 2px solid #eee; border-radius: 10px;
+    font-family: var(--font-body); font-size: .9rem;
+    color: var(--dark); background: var(--cream);
+    transition: border .25s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--saffron); background: #fff; }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-group select { cursor: pointer; }
+  .submit-btn {
+    width: 100%; padding: 16px;
+    background: linear-gradient(135deg, var(--saffron), #e55d00);
+    color: #fff; border: none; border-radius: 50px;
+    font-family: var(--font-head); font-size: 1.1rem; font-weight: 700;
+    cursor: pointer; transition: all .3s; letter-spacing: .5px;
+    box-shadow: 0 6px 24px rgba(255,107,0,.4);
+  }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,107,0,.5); }
+  .success-msg {
+    display: none; text-align: center; padding: 40px 20px;
+  }
+  .success-msg .check { font-size: 4rem; margin-bottom: 16px; }
+  .success-msg h3 { font-family: var(--font-head); font-size: 1.6rem; font-weight: 800; color: var(--leaf); }
+  .success-msg p { color: #777; margin-top: 8px; }
+
+  /* ========== CONTACT ========== */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .contact-card {
+    background: #fff; border-radius: var(--rad); padding: 32px;
+    box-shadow: var(--shadow); margin-bottom: 20px;
+    display: flex; align-items: flex-start; gap: 18px;
+    transition: transform .3s;
+  }
+  .contact-card:hover { transform: translateY(-4px); }
+  .contact-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--light-org); display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0; color: var(--saffron);
+  }
+  .contact-info h4 { font-weight: 700; color: var(--brown); margin-bottom: 6px; }
+  .contact-info p { color: #777; font-size: .88rem; line-height: 1.7; }
+  .contact-info a { color: var(--saffron); font-weight: 600; }
+  .hours-table { width: 100%; border-collapse: collapse; }
+  .hours-table td { padding: 8px 0; font-size: .88rem; color: #666; border-bottom: 1px solid #f0e8e0; }
+  .hours-table td:first-child { font-weight: 600; color: var(--brown); width: 130px; }
+  .map-placeholder {
+    background: var(--light-org); border-radius: 16px;
+    height: 300px; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px; color: #aaa;
+    border: 2px solid #f0e8e0; font-size: .9rem;
+    text-align: center; padding: 20px;
+  }
+  .map-placeholder i { font-size: 3rem; color: var(--saffron); opacity: .6; }
+  .map-link {
+    margin-top: 16px;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--saffron); color: #fff;
+    padding: 10px 22px; border-radius: 50px; font-weight: 600; font-size: .85rem;
+    transition: all .3s;
+  }
+  .map-link:hover { background: #e55d00; transform: translateY(-2px); }
+
+  /* ========== SOCIAL ========== */
+  .social-strip {
+    background: var(--dark); padding: 48px 5%; text-align: center;
+  }
+  .social-strip h3 {
+    font-family: var(--font-head); font-size: 1.5rem; color: var(--turmeric);
+    margin-bottom: 6px;
+  }
+  .social-strip p { color: rgba(255,255,255,.5); font-size: .85rem; margin-bottom: 24px; }
+  .social-icons { display: flex; gap: 16px; justify-content: center; }
+  .social-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; color: #fff; transition: all .3s;
+    text-decoration: none;
+  }
+  .si-insta { background: linear-gradient(135deg, #fd1d1d, #e1306c, #833ab4); }
+  .si-wa    { background: #25D366; }
+  .si-fb    { background: #1877F2; }
+  .social-icon:hover { transform: scale(1.15) translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+
+  /* ========== FOOTER ========== */
+  footer {
+    background: var(--dark); border-top: 1px solid rgba(255,255,255,.05);
+    padding: 48px 5% 24px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px; margin-bottom: 40px;
+  }
+  .footer-brand .logo { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; color: var(--turmeric); margin-bottom: 12px; }
+  .footer-brand p { color: rgba(255,255,255,.45); font-size: .85rem; line-height: 1.7; }
+  .footer-col h4 { color: var(--turmeric); font-weight: 700; margin-bottom: 16px; font-size: .9rem; letter-spacing: .5px; }
+  .footer-col a { display: block; color: rgba(255,255,255,.45); font-size: .85rem; margin-bottom: 10px; transition: color .25s; }
+  .footer-col a:hover { color: var(--saffron); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.07);
+    padding-top: 20px; text-align: center;
+    color: rgba(255,255,255,.3); font-size: .8rem;
+  }
+
+  /* ========== PROPRIETOR BANNER ========== */
+  .proprietor-banner {
+    background: linear-gradient(135deg, var(--brown), #3D1C00);
+    padding: 28px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .prop-info { color: rgba(255,255,255,.8); font-size: .88rem; }
+  .prop-info strong { color: var(--turmeric); font-family: var(--font-head); font-size: 1.1rem; display: block; margin-bottom: 4px; }
+  .prop-contact { display: flex; align-items: center; gap: 8px; color: var(--turmeric); font-weight: 600; font-size: .9rem; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .hero-visual { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .order-container { padding: 28px 20px; }
+    .gallery-item.wide { grid-column: span 1; }
+    .section { padding: 56px 5%; }
+  }
+
+  /* ========== TOAST ========== */
+  .toast {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: var(--dark); color: #fff;
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 600; font-size: .9rem; z-index: 9999;
+    box-shadow: 0 8px 32px rgba(0,0,0,.3);
+    transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast-emoji { font-size: 1.2rem; }
+
+  /* ========== WHATSAPP FAB ========== */
+  .wa-fab {
+    position: fixed; bottom: 24px; right: 24px; z-index: 999;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; box-shadow: 0 6px 24px rgba(37,211,102,.45);
+    transition: all .3s; text-decoration: none;
+  }
+  .wa-fab:hover { transform: scale(1.12); box-shadow: 0 10px 32px rgba(37,211,102,.6); }
+
+  /* ========== SCROLL REVEAL ========== */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<nav id="mainNav">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">🌾</div>
+    Satvik <span>Khandeshi</span>
+  </div>
+  <div class="nav-links">
+    <a href="#" class="nav-link active" data-page="home">Home</a>
+    <a href="#" class="nav-link" data-page="about">About Us</a>
+    <a href="#" class="nav-link" data-page="menu">Menu</a>
+    <a href="#" class="nav-link" data-page="gallery">Gallery</a>
+    <a href="#" class="nav-link" data-page="order">Order Now</a>
+    <a href="#" class="nav-link" data-page="contact">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" class="nav-link active" data-page="home">🏠 Home</a>
+  <a href="#" class="nav-link" data-page="about">📖 About Us</a>
+  <a href="#" class="nav-link" data-page="menu">🍽️ Menu</a>
+  <a href="#" class="nav-link" data-page="gallery">🖼️ Gallery</a>
+  <a href="#" class="nav-link" data-page="order">🛒 Order Now</a>
+  <a href="#" class="nav-link" data-page="contact">📞 Contact</a>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE: HOME -->
+<!-- ============================================================ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-star"></i> Authentic Khandeshi Flavours Since 2005</div>
+      <h1>Fresh, Crispy, &amp; <em>Delicious Snacks</em> Every Day</h1>
+      <p>Experience the rich, spicy goodness of traditional Khandeshi snacks — handcrafted with love, pure ghee &amp; the finest ingredients straight from Maharashtra's heartland.</p>
+      <div class="hero-btns">
+        <button class="btn-primary nav-link" data-page="order"><i class="fas fa-shopping-cart"></i> Order Now</button>
+        <button class="btn-secondary nav-link" data-page="menu">View Menu</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-plate">🧆</div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-item"><span class="stat-num">15+</span><div class="stat-label">Years of Excellence</div></div>
+    <div class="stat-item"><span class="stat-num">50+</span><div class="stat-label">Snack Varieties</div></div>
+    <div class="stat-item"><span class="stat-num">10K+</span><div class="stat-label">Happy Customers</div></div>
+    <div class="stat-item"><span class="stat-num">2</span><div class="stat-label">Shop Locations</div></div>
+  </div>
+
+  <!-- Featured Snacks -->
+  <section class="section">
+    <div class="sec-header reveal">
+      <span class="sec-label">⭐ Must Try</span>
+      <h2 class="sec-title">Our <span>Featured</span> Snacks</h2>
+      <p class="sec-sub">Handpicked fan favourites — crispy, spicy, and absolutely irresistible!</p>
+    </div>
+    <div class="snacks-grid">
+      <div class="snack-card reveal">
+        <div class="snack-thumb">🍌<span class="snack-badge">Best Seller</span></div>
+        <div class="snack-body">
+          <div class="snack-name">Yellow Banana Waffer</div>
+          <div class="snack-desc">Thin, golden banana slices fried to crispy perfection with a hint of salt. Light, airy &amp; totally addictive.</div>
+          <div class="snack-foot">
+            <div class="snack-price">₹60 <small>/200g</small></div>
+            <button class="add-btn nav-link" data-page="order">Order</button>
+          </div>
+        </div>
+      </div>
+      <div class="snack-card reveal">
+        <div class="snack-thumb">🌶️<span class="snack-badge">Spicy Pick</span></div>
+        <div class="snack-body">
+          <div class="snack-name">Spicy Banana Waffer</div>
+          <div class="snack-desc">Same crispy banana slice with a bold Khandeshi masala kick. Not for the faint-hearted — but impossibly delicious!</div>
+          <div class="snack-foot">
+            <div class="snack-price">₹65 <small>/200g</small></div>
+            <button class="add-btn nav-link" data-page="order">Order</button>
+          </div>
+        </div>
+      </div>
+      <div class="snack-card reveal">
+        <div class="snack-thumb">🥜<span class="snack-badge">Classic</span></div>
+        <div class="snack-body">
+          <div class="snack-name">Farsan Mix</div>
+          <div class="snack-desc">A festive medley of sev, chakli bites, peanuts &amp; boondi tossed with aromatic spices. The ultimate tea-time companion.</div>
+          <div class="snack-foot">
+            <div class="snack-price">₹80 <small>/250g</small></div>
+            <button class="add-btn nav-link" data-page="order">Order</button>
+          </div>
+        </div>
+      </div>
+      <div class="snack-card reveal">
+        <div class="snack-thumb">🌀<span class="snack-badge">Traditional</span></div>
+        <div class="snack-body">
+          <div class="snack-name">Bhajni Chakli</div>
+          <div class="snack-desc">Crispy spiral chaklis made from roasted multi-grain bhajni flour, seasoned with jeera &amp; sesame. A timeless classic.</div>
+          <div class="snack-foot">
+            <div class="snack-price">₹100 <small>/300g</small></div>
+            <button class="add-btn nav-link" data-page="order">Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <button class="btn-primary nav-link" data-page="menu">View Full Menu <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="section section-alt">
+    <div class="sec-header reveal">
+      <span class="sec-label">💚 Why Choose Us</span>
+      <h2 class="sec-title">Pure, Natural &amp; <span>Handcrafted</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+      <div class="value-item reveal">
+        <div class="value-icon">🌿</div>
+        <div class="value-text"><h4>100% Natural Ingredients</h4><p>No artificial colours or flavours — ever. Only real, farm-fresh produce.</p></div>
+      </div>
+      <div class="value-item reveal">
+        <div class="value-icon">🫙</div>
+        <div class="value-text"><h4>Hygienic Preparation</h4><p>Prepared in a certified clean kitchen following strict food safety standards.</p></div>
+      </div>
+      <div class="value-item reveal">
+        <div class="value-icon">🧈</div>
+        <div class="value-text"><h4>Pure Desi Ghee</h4><p>Our ghee products use only the finest cow &amp; buffalo ghee — no blends.</p></div>
+      </div>
+      <div class="value-item reveal">
+        <div class="value-icon">🚚</div>
+        <div class="value-text"><h4>Fresh Daily Batches</h4><p>Snacks are made fresh every morning so you always get the crispiest bites.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="section">
+    <div class="sec-header reveal">
+      <span class="sec-label">💬 Customer Love</span>
+      <h2 class="sec-title">What Our Customers <span>Say</span></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"The bhajni chakli reminds me of my grandmother's recipe. Perfectly crispy, not too oily, and incredibly flavourful. Ordered 3 packs already!"</div>
+        <div class="reviewer"><div class="avatar">👩</div><div><div class="reviewer-name">Priya Deshmukh</div><div class="reviewer-role">Regular Customer, Dombivli</div></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"Best spicy banana waffers in the entire Thane district! The masala coating is just right — spicy without being overwhelming. A must-buy!"</div>
+        <div class="reviewer"><div class="avatar">👨</div><div><div class="reviewer-name">Rohit Patil</div><div class="reviewer-role">Office Worker, Thakurli</div></div></div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"I gift Satvik Khandeshi snacks to all my relatives every festival. The packaging is great, the taste is authentic, and delivery is always on time!"</div>
+        <div class="reviewer"><div class="avatar">👩</div><div><div class="reviewer-name">Sunita Bhosale</div><div class="reviewer-role">Homemaker, Navi Mumbai</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:linear-gradient(135deg,var(--saffron),#e55d00);padding:64px 5%;text-align:center;">
+    <h2 style="font-family:var(--font-head);font-size:clamp(1.8rem,4vw,3rem);font-weight:800;color:#fff;margin-bottom:12px;">Craving Something Crispy?</h2>
+    <p style="color:rgba(255,255,255,.85);font-size:1rem;margin-bottom:32px;">Place your order now and get fresh snacks delivered to your doorstep!</p>
+    <button class="nav-link" data-page="order" style="background:#fff;color:var(--saffron);padding:16px 40px;border-radius:50px;font-family:var(--font-head);font-size:1.1rem;font-weight:800;border:none;cursor:pointer;box-shadow:0 8px 28px rgba(0,0,0,.2);transition:all .3s;">
+      🛒 Order Now
+    </button>
+  </section>
+
+</div><!-- /page-home -->
+
+<!-- ============================================================ -->
+<!-- PAGE: ABOUT -->
+<!-- ============================================================ -->
+<div class="page" id="page-about">
+  <section class="section">
+    <div class="about-grid">
+      <div class="about-visual reveal">🌾<br><span style="font-family:var(--font-head);font-size:1.2rem;color:var(--saffron);display:block;margin-top:12px;">Est. 2005</span></div>
+      <div class="about-content reveal">
+        <span class="sec-label">📖 Our Story</span>
+        <h2>From a Small Kitchen to <span style="color:var(--saffron)">Maharashtra's Heart</span></h2>
+        <p>Satvik Khandeshi was born out of a simple passion: to bring the authentic flavours of Khandesh to every home. Proprietor <strong>Vilas S. Bhirud</strong> started this journey over 15 years ago in a small kitchen in Dombivli, inspired by generations of family recipes passed down through the rolling fields of Khandesh.</p>
+        <p>What began as a home-based venture quickly grew into a beloved local brand. Today, with shops in Thakurli and Dombivli, we serve thousands of happy customers — students, families, and office workers — who count on us for their daily dose of crispy, wholesome snacks.</p>
+        <p>Every product we make is a tribute to tradition: slow-roasted grains, pure desi ghee, and spice blends that carry the soul of our homeland.</p>
+        <div class="values-list">
+          <div class="value-item">
+            <div class="value-icon">🎯</div>
+            <div class="value-text"><h4>Our Mission</h4><p>To make traditional Khandeshi flavours accessible, affordable, and consistently delicious for every household.</p></div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">💚</div>
+            <div class="value-text"><h4>Our Values</h4><p>Authenticity, purity, hygiene, and respect for our culinary heritage guide every decision we make.</p></div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🏅</div>
+            <div class="value-text"><h4>Quality Commitment</h4><p>All snacks are prepared fresh daily in a hygienic, certified kitchen using natural ingredients — zero compromises.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proprietor -->
+  <section class="section section-alt">
+    <div class="proprietor-banner" style="border-radius:20px;max-width:800px;margin:0 auto;">
+      <div class="prop-info">
+        <strong>Vilas S. Bhirud</strong>
+        Proprietor &amp; Founder, Satvik Khandeshi<br>
+        Shop No. 11, Ramdas Complex, Thakurli (E), Thane
+      </div>
+      <div class="prop-contact"><i class="fas fa-phone"></i> +91 – 91526 63963</div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE: MENU -->
+<!-- ============================================================ -->
+<div class="page" id="page-menu">
+  <section class="section">
+    <div class="sec-header reveal">
+      <span class="sec-label">🍽️ Our Menu</span>
+      <h2 class="sec-title">Crispy Goodness in <span>Every Bite</span></h2>
+      <p class="sec-sub">All items are freshly prepared using 100% natural ingredients and traditional recipes.</p>
+    </div>
+
+    <div class="menu-grid">
+      <!-- Yellow Banana Waffer -->
+      <div class="menu-card reveal">
+        <div class="menu-thumb">🍌<div class="menu-veg"></div><div class="menu-tag">Best Seller</div></div>
+        <div class="menu-info">
+          <div class="menu-name">Yellow Banana Waffer</div>
+          <div class="menu-desc">Thin, golden banana slices fried in refined oil to a perfectly light crisp. Lightly salted to let the natural sweetness shine through. Great as a tea-time or travel snack.</div>
+          <div class="menu-footer">
+            <div class="menu-price">₹60 <small style="font-size:.6rem;color:#aaa;font-weight:400;font-family:var(--font-body)">/200g</small></div>
+            <button class="order-btn nav-link" data-page="order"><i class="fas fa-cart-plus"></i> Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spicy Banana Waffer -->
+      <div class="menu-card reveal">
+        <div class="menu-thumb">🌶️<div class="menu-veg"></div><div class="menu-tag">🔥 Spicy</div></div>
+        <div class="menu-info">
+          <div class="menu-name">Spicy Banana Waffer</div>
+          <div class="menu-desc">Our classic banana waffer with an irresistible Khandeshi masala coating — red chilli, black pepper &amp; secret spice blend. Bold, fiery &amp; completely addictive.</div>
+          <div class="menu-footer">
+            <div class="menu-price">₹65 <small style="font-size:.6rem;color:#aaa;font-weight:400;font-family:var(--font-body)">/200g</small></div>
+            <button class="order-btn nav-link" data-page="order"><i class="fas fa-cart-plus"></i> Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Farsan -->
+      <div class="menu-card reveal">
+        <div class="menu-thumb">🥜<div class="menu-veg"></div><div class="menu-tag">Festival Fav</div></div>
+        <div class="menu-info">
+          <div class="menu-name">Farsan Mix</div>
+          <div class="menu-desc">A festive mix of thin sev, mini chakli pieces, roasted peanuts, boondi &amp; dried dalia — spiced with turmeric, chilli &amp; jeera for a flavour-packed munch.</div>
+          <div class="menu-footer">
+            <div class="menu-price">₹80 <small style="font-size:.6rem;color:#aaa;font-weight:400;font-family:var(--font-body)">/250g</small></div>
+            <button class="order-btn nav-link" data-page="order"><i class="fas fa-cart-plus"></i> Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bhajni Chakli -->
+      <div class="menu-card reveal">
+        <div class="menu-thumb">🌀<div class="menu-veg"></div><div class="menu-tag">Traditional</div></div>
+        <div class="menu-info">
+          <div class="menu-name">Bhajni Chakli</div>
+          <div class="menu-desc">Hand-pressed spiral chaklis made from a special roasted multi-grain bhajni flour. Infused with sesame seeds, jeera &amp; ajwain for a deep, nutty, crispy crunch.</div>
+          <div class="menu-footer">
+            <div class="menu-price">₹100 <small style="font-size:.6rem;color:#aaa;font-weight:400;font-family:var(--font-body)">/300g</small></div>
+            <button class="order-btn nav-link" data-page="order"><i class="fas fa-cart-plus"></i> Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cow Ghee -->
+      <div class="menu-card reveal">
+        <div class="menu-thumb">🐄<div class="menu-veg"></div><div class="menu-tag">Pure &amp; Natural</div></div>
+        <div class="menu-info">
+          <div class="menu-name">Vikas Cow Ghee</div>
+          <div class="menu-desc">Slow-churned from pure cow milk using the traditional bilona method. Bright golden, aromatic, and rich — the perfect addition to your rotis, dal &amp; khichdi.</div>
+          <div class="menu-footer">
+            <div class="menu-price">₹650 <small style="font-size:.6rem;color:#aaa;font-weight:400;font-family:var(--font-body)">/500ml</small></div>
+            <button class="order-btn nav-link" data-page="order"><i class="fas fa-cart-plus"></i> Order</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buffalo Ghee -->
+      <div class="menu-card reveal">
+        <div class="menu-thumb">🐃<div class="menu-veg"></div><div class="menu-tag">Rich &amp; Creamy</div></div>
+        <div class="menu-info">
+          <div class="menu-name">Vikas Buffalo Ghee</div>
+          <div class="menu-desc">Pure buffalo milk ghee — thick, creamy white, and intensely rich. Higher fat content makes it ideal for deep frying, sweets &amp; halwas. Authentic desi taste.</div>
+          <div class="menu-footer">
+            <div class="menu-price">₹580 <small style="font-size:.6rem;color:#aaa;font-weight:400;font-family:var(--font-body)">/500ml</small></div>
+            <button class="order-btn nav-link" data-page="order"><i class="fas fa-cart-plus"></i> Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE: GALLERY -->
+<!-- ============================================================ -->
+<div class="page" id="page-gallery">
+  <section class="section">
+    <div class="sec-header reveal">
+      <span class="sec-label">📸 Gallery</span>
+      <h2 class="sec-title">A Feast for the <span>Eyes</span></h2>
+      <p class="sec-sub">A glimpse into our shop, our process, and of course — our delicious snacks!</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item tall reveal" style="font-size:90px;">🍌<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+      <div class="gallery-item reveal">🌶️<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+      <div class="gallery-item reveal">🥜<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+      <div class="gallery-item reveal">🌀<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+      <div class="gallery-item reveal">🐄<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+      <div class="gallery-item wide reveal" style="font-size:100px;background:linear-gradient(135deg,#3D1C00,#5C2E00);">🏪<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+      <div class="gallery-item reveal">🧆<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+      <div class="gallery-item reveal">🍿<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+      <div class="gallery-item reveal">🌾<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+      <div class="gallery-item reveal">🧀<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+      <div class="gallery-item tall reveal" style="font-size:90px;background:linear-gradient(135deg,#ffe7c0,#ffd080);">🐃<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+      <div class="gallery-item reveal">🥐<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE: ORDER -->
+<!-- ============================================================ -->
+<div class="page" id="page-order">
+  <section class="section">
+    <div class="sec-header reveal">
+      <span class="sec-label">🛒 Place Your Order</span>
+      <h2 class="sec-title">Order <span>Fresh Snacks</span> Today</h2>
+      <p class="sec-sub">Fill in the form below and we'll confirm your order via WhatsApp or phone.</p>
+    </div>
+    <div class="order-container reveal">
+      <div id="orderForm">
+        <h2>Order Details</h2>
+        <p>* Required fields. We deliver within Thane &amp; Dombivli areas.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name <span>*</span></label>
+            <input type="text" id="custName" placeholder="e.g. Priya Deshmukh" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number <span>*</span></label>
+            <input type="tel" id="custPhone" placeholder="+91 98765 43210" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Select Snack <span>*</span></label>
+          <select id="snackSelect">
+            <option value="">-- Choose a snack --</option>
+            <option>Yellow Banana Waffer (₹60/200g)</option>
+            <option>Spicy Banana Waffer (₹65/200g)</option>
+            <option>Farsan Mix (₹80/250g)</option>
+            <option>Bhajni Chakli (₹100/300g)</option>
+            <option>Vikas Cow Ghee (₹650/500ml)</option>
+            <option>Vikas Buffalo Ghee (₹580/500ml)</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Quantity <span>*</span></label>
+            <input type="number" id="qty" min="1" max="50" placeholder="e.g. 2" value="1">
+          </div>
+          <div class="form-group">
+            <label>Special Instructions</label>
+            <input type="text" id="special" placeholder="Extra spicy, gift wrap, etc.">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Delivery Address <span>*</span></label>
+          <textarea id="address" placeholder="Flat no., Building, Street, Area, Pincode..."></textarea>
+        </div>
+        <button class="submit-btn" onclick="submitOrder()">🛒 Place Order via WhatsApp</button>
+      </div>
+      <div class="success-msg" id="successMsg">
+        <div class="check">✅</div>
+        <h3>Order Submitted!</h3>
+        <p>Thank you! We'll contact you on WhatsApp to confirm your order shortly.<br>
+        For urgent queries, call us at <strong>+91 – 91526 63963</strong></p>
+        <br>
+        <button class="btn-primary" onclick="resetOrder()">Place Another Order</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE: CONTACT -->
+<!-- ============================================================ -->
+<div class="page" id="page-contact">
+  <section class="section">
+    <div class="sec-header reveal">
+      <span class="sec-label">📞 Get In Touch</span>
+      <h2 class="sec-title">We'd Love to <span>Hear from You</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-card reveal">
+          <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+          <div class="contact-info">
+            <h4>Phone / WhatsApp</h4>
+            <p><a href="tel:+919152663963">+91 – 91526 63963</a><br>Available 9 AM – 9 PM, Mon–Sun</p>
+          </div>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-info">
+            <h4>Email Us</h4>
+            <p><a href="mailto:satvikkanhadeshi@gmail.com">satvikkanhadeshi@gmail.com</a><br>We reply within 24 hours.</p>
+          </div>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-icon"><i class="fas fa-globe"></i></div>
+          <div class="contact-info">
+            <h4>Website</h4>
+            <p><a href="http://www.satvikkanhadeshi.com" target="_blank">www.satvikkanhadeshi.com</a></p>
+          </div>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="contact-info">
+            <h4>Shop Locations</h4>
+            <p>
+              <strong>Shop 1:</strong> Shop No. 11, Ramdas Complex, Thakurli (E), Thane<br><br>
+              <strong>Shop 2:</strong> Sagar Vihar, No.4, Nandivli Cross Road, R.G Patilwadi, Dombivli (E), Thane – 421 201
+            </p>
+          </div>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-icon"><i class="fas fa-clock"></i></div>
+          <div class="contact-info">
+            <h4>Opening Hours</h4>
+            <table class="hours-table">
+              <tr><td>Monday – Friday</td><td>9:00 AM – 9:00 PM</td></tr>
+              <tr><td>Saturday</td><td>9:00 AM – 10:00 PM</td></tr>
+              <tr><td>Sunday</td><td>10:00 AM – 8:00 PM</td></tr>
+              <tr><td>Public Holidays</td><td>10:00 AM – 6:00 PM</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="map-placeholder reveal">
+          <i class="fas fa-map-marked-alt"></i>
+          <strong style="color:var(--brown);font-size:1rem;">Dombivli (E), Thane</strong>
+          <p style="font-size:.82rem;max-width:260px;">Sagar Vihar, No.4, Nandivli Cross Road, R.G Patilwadi, Dombivli (E), Thane – 421 201</p>
+          <a href="https://maps.google.com/?q=Dombivli+East+Thane+Maharashtra" target="_blank" class="map-link">
+            <i class="fas fa-directions"></i> Get Directions
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ========== SOCIAL STRIP (shown on all pages) ========== -->
+<div class="social-strip">
+  <h3>Follow Us for Daily Updates 🍿</h3>
+  <p>Fresh stock arrivals, new flavours &amp; special offers — follow us!</p>
+  <div class="social-icons">
+    <a href="https://instagram.com" target="_blank" class="social-icon si-insta"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/919152663963" target="_blank" class="social-icon si-wa"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://facebook.com" target="_blank" class="social-icon si-fb"><i class="fab fa-facebook-f"></i></a>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">🌾 Satvik Khandeshi</div>
+      <p>Authentic Khandeshi snacks made with love, tradition &amp; the finest natural ingredients. Serving happiness since 2005.</p>
+      <br>
+      <p style="color:rgba(255,255,255,.3);font-size:.8rem;">Proprietor: Vilas S. Bhirud</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#" class="nav-link" data-page="home">Home</a>
+      <a href="#" class="nav-link" data-page="about">About Us</a>
+      <a href="#" class="nav-link" data-page="menu">Our Menu</a>
+      <a href="#" class="nav-link" data-page="gallery">Gallery</a>
+      <a href="#" class="nav-link" data-page="order">Order Now</a>
+    </div>
+    <div class="footer-col">
+      <h4>Our Products</h4>
+      <a href="#">Banana Waffers</a>
+      <a href="#">Farsan Mix</a>
+      <a href="#">Bhajni Chakli</a>
+      <a href="#">Cow Ghee</a>
+      <a href="#">Buffalo Ghee</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+919152663963">📞 +91 91526 63963</a>
+      <a href="mailto:satvikkanhadeshi@gmail.com">✉️ Email Us</a>
+      <a href="http://www.satvikkanhadeshi.com" target="_blank">🌐 Website</a>
+      <a href="https://wa.me/919152663963" target="_blank">💬 WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 Satvik Khandeshi. All rights reserved. | Designed with ❤️ in Maharashtra
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/919152663963" target="_blank" class="wa-fab" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Toast -->
+<div class="toast" id="toast"><span class="toast-emoji">🛒</span> <span id="toastMsg">Added to cart!</span></div>
+
+<script>
+  // ========== PAGE NAVIGATION ==========
+  function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + pageId);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // Update active links
+    document.querySelectorAll('.nav-link').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === pageId);
+    });
+    // Re-run reveal
+    setTimeout(observeReveal, 100);
+    // Close mobile menu
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // Delegate all nav-link clicks
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('.nav-link');
+    if (link && link.dataset.page) {
+      e.preventDefault();
+      showPage(link.dataset.page);
+    }
+  });
+
+  // Hamburger
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+
+  // ========== SCROLL REVEAL ==========
+  function observeReveal() {
+    const items = document.querySelectorAll('.reveal:not(.visible)');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(i => observer.observe(i));
+  }
+  observeReveal();
+
+  // ========== ORDER FORM ==========
+  function submitOrder() {
+    const name    = document.getElementById('custName').value.trim();
+    const phone   = document.getElementById('custPhone').value.trim();
+    const snack   = document.getElementById('snackSelect').value;
+    const qty     = document.getElementById('qty').value;
+    const address = document.getElementById('address').value.trim();
+    const special = document.getElementById('special').value.trim();
+
+    if (!name || !phone || !snack || !address) {
+      showToast('⚠️ Please fill in all required fields!');
+      return;
+    }
+
+    // Build WhatsApp message
+    const msg = encodeURIComponent(
+      `🛒 *New Order – Satvik Khandeshi*\n\n` +
+      `👤 Name: ${name}\n📞 Phone: ${phone}\n` +
+      `🍿 Item: ${snack}\n📦 Qty: ${qty}\n` +
+      `📍 Address: ${address}\n` +
+      (special ? `📝 Notes: ${special}` : '')
+    );
+
+    window.open(`https://wa.me/919152663963?text=${msg}`, '_blank');
+
+    document.getElementById('orderForm').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  }
+
+  function resetOrder() {
+    document.getElementById('orderForm').style.display = 'block';
+    document.getElementById('successMsg').style.display = 'none';
+    document.getElementById('custName').value = '';
+    document.getElementById('custPhone').value = '';
+    document.getElementById('snackSelect').value = '';
+    document.getElementById('qty').value = 1;
+    document.getElementById('address').value = '';
+    document.getElementById('special').value = '';
+  }
+
+  // ========== TOAST ==========
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+</script>
+</body>
+</html>
