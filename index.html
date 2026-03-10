@@ -36,6 +36,21 @@
   a { text-decoration: none; color: inherit; }
   ul { list-style: none; }
 
+  /* ========== IMAGE OPTIMIZATION (NEW) ========== */
+  .snack-thumb img, 
+  .menu-thumb img, 
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-plate img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+
   /* ========== PAGE SYSTEM ========== */
   .page { display: none; animation: fadeIn .4s ease; }
   .page.active { display: block; }
@@ -149,14 +164,9 @@
     background: radial-gradient(circle at 35% 35%, rgba(255,194,0,.25), rgba(255,107,0,.1));
     border: 2px solid rgba(255,194,0,.2);
     display: flex; align-items: center; justify-content: center;
-    font-size: clamp(120px, 22vw, 200px);
     animation: float 4s ease-in-out infinite;
     position: relative;
-  }
-  .hero-plate::after {
-    content: '🌿';
-    position: absolute; bottom: 20%; right: 10%;
-    font-size: .35em; animation: float 3s ease-in-out infinite reverse;
+    overflow: hidden;
   }
   @keyframes float {
     0%, 100% { transform: translateY(0) rotate(-2deg); }
@@ -195,13 +205,8 @@
   .snack-card:hover { transform: translateY(-8px); border-color: var(--turmeric); box-shadow: 0 16px 40px rgba(255,107,0,.2); }
   .snack-thumb {
     height: 180px; display: flex; align-items: center; justify-content: center;
-    font-size: 80px;
     background: linear-gradient(135deg, var(--light-org), #ffe7c0);
     position: relative; overflow: hidden;
-  }
-  .snack-thumb::after {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.5), transparent 60%);
   }
   .snack-badge {
     position: absolute; top: 12px; right: 12px; z-index: 2;
@@ -331,13 +336,14 @@
   .menu-thumb {
     height: 200px; background: linear-gradient(135deg, var(--light-org), #ffe7c0);
     display: flex; align-items: center; justify-content: center;
-    font-size: 90px; position: relative;
+    position: relative; overflow: hidden;
   }
   .menu-veg {
     position: absolute; top: 12px; left: 12px;
     width: 22px; height: 22px; border-radius: 4px;
     border: 2px solid var(--leaf);
     display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,.8); z-index: 2;
   }
   .menu-veg::after {
     content: ''; width: 8px; height: 8px;
@@ -347,7 +353,7 @@
     position: absolute; bottom: 12px; right: 12px;
     background: rgba(255,107,0,.9); color: #fff;
     padding: 4px 12px; border-radius: 50px; font-size: .72rem; font-weight: 700;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px); z-index: 2;
   }
   .menu-info { padding: 22px; }
   .menu-name {
@@ -380,7 +386,6 @@
     border-radius: 14px; overflow: hidden;
     aspect-ratio: 1;
     display: flex; align-items: center; justify-content: center;
-    font-size: 70px;
     cursor: pointer; transition: all .3s;
     position: relative; box-shadow: var(--shadow);
   }
@@ -585,7 +590,6 @@
 </head>
 <body>
 
-<!-- ========== NAVBAR ========== -->
 <nav id="mainNav">
   <div class="nav-logo">
     <div class="nav-logo-icon">🌾</div>
@@ -610,29 +614,26 @@
   <a href="#" class="nav-link" data-page="contact">📞 Contact</a>
 </div>
 
-<!-- ============================================================ -->
-<!-- PAGE: HOME -->
-<!-- ============================================================ -->
 <div class="page active" id="page-home">
 
-  <!-- Hero -->
   <section class="hero">
     <div class="hero-pattern"></div>
     <div class="hero-content">
       <div class="hero-badge"><i class="fas fa-star"></i> Authentic Khandeshi Flavours Since 2005</div>
-      <h1>Fresh, Crispy, &amp; <em>Delicious Snacks</em> Every Day</h1>
-      <p>Experience the rich, spicy goodness of traditional Khandeshi snacks — handcrafted with love, pure ghee &amp; the finest ingredients straight from Maharashtra's heartland.</p>
+      <h1>Fresh, Crispy, & <em>Delicious Snacks</em> Every Day</h1>
+      <p>Experience the rich, spicy goodness of traditional Khandeshi snacks — handcrafted with love, pure ghee & the finest ingredients straight from Maharashtra's heartland.</p>
       <div class="hero-btns">
         <button class="btn-primary nav-link" data-page="order"><i class="fas fa-shopping-cart"></i> Order Now</button>
         <button class="btn-secondary nav-link" data-page="menu">View Menu</button>
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-plate">🧆</div>
+      <div class="hero-plate">
+        <img src="yellow-banana.jpg" alt="Banana Waffers">
+      </div>
     </div>
   </section>
 
-  <!-- Stats -->
   <div class="stats-bar">
     <div class="stat-item"><span class="stat-num">15+</span><div class="stat-label">Years of Excellence</div></div>
     <div class="stat-item"><span class="stat-num">50+</span><div class="stat-label">Snack Varieties</div></div>
@@ -640,7 +641,6 @@
     <div class="stat-item"><span class="stat-num">2</span><div class="stat-label">Shop Locations</div></div>
   </div>
 
-  <!-- Featured Snacks -->
   <section class="section">
     <div class="sec-header reveal">
       <span class="sec-label">⭐ Must Try</span>
@@ -649,10 +649,13 @@
     </div>
     <div class="snacks-grid">
       <div class="snack-card reveal">
-        <div class="snack-thumb">🍌<span class="snack-badge">Best Seller</span></div>
+        <div class="snack-thumb">
+          <img src="yellow-banana.jpg" alt="Yellow Banana Waffer">
+          <span class="snack-badge">Best Seller</span>
+        </div>
         <div class="snack-body">
           <div class="snack-name">Yellow Banana Waffer</div>
-          <div class="snack-desc">Thin, golden banana slices fried to crispy perfection with a hint of salt. Light, airy &amp; totally addictive.</div>
+          <div class="snack-desc">Thin, golden banana slices fried to crispy perfection with a hint of salt. Light, airy & totally addictive.</div>
           <div class="snack-foot">
             <div class="snack-price">₹60 <small>/200g</small></div>
             <button class="add-btn nav-link" data-page="order">Order</button>
@@ -660,7 +663,10 @@
         </div>
       </div>
       <div class="snack-card reveal">
-        <div class="snack-thumb">🌶️<span class="snack-badge">Spicy Pick</span></div>
+        <div class="snack-thumb">
+          <img src="spicy waffers.jpg" alt="Spicy Banana Waffer">
+          <span class="snack-badge">Spicy Pick</span>
+        </div>
         <div class="snack-body">
           <div class="snack-name">Spicy Banana Waffer</div>
           <div class="snack-desc">Same crispy banana slice with a bold Khandeshi masala kick. Not for the faint-hearted — but impossibly delicious!</div>
@@ -671,10 +677,13 @@
         </div>
       </div>
       <div class="snack-card reveal">
-        <div class="snack-thumb">🥜<span class="snack-badge">Classic</span></div>
+        <div class="snack-thumb">
+          <img src="farsan.jpg" alt="Farsan Mix">
+          <span class="snack-badge">Classic</span>
+        </div>
         <div class="snack-body">
           <div class="snack-name">Farsan Mix</div>
-          <div class="snack-desc">A festive medley of sev, chakli bites, peanuts &amp; boondi tossed with aromatic spices. The ultimate tea-time companion.</div>
+          <div class="snack-desc">A festive medley of sev, chakli bites, peanuts & boondi tossed with aromatic spices. The ultimate tea-time companion.</div>
           <div class="snack-foot">
             <div class="snack-price">₹80 <small>/250g</small></div>
             <button class="add-btn nav-link" data-page="order">Order</button>
@@ -682,10 +691,13 @@
         </div>
       </div>
       <div class="snack-card reveal">
-        <div class="snack-thumb">🌀<span class="snack-badge">Traditional</span></div>
+        <div class="snack-thumb">
+          <img src="chakli.jpg" alt="Bhajni Chakli">
+          <span class="snack-badge">Traditional</span>
+        </div>
         <div class="snack-body">
           <div class="snack-name">Bhajni Chakli</div>
-          <div class="snack-desc">Crispy spiral chaklis made from roasted multi-grain bhajni flour, seasoned with jeera &amp; sesame. A timeless classic.</div>
+          <div class="snack-desc">Crispy spiral chaklis made from roasted multi-grain bhajni flour, seasoned with jeera & sesame. A timeless classic.</div>
           <div class="snack-foot">
             <div class="snack-price">₹100 <small>/300g</small></div>
             <button class="add-btn nav-link" data-page="order">Order</button>
@@ -698,11 +710,10 @@
     </div>
   </section>
 
-  <!-- Why Us -->
   <section class="section section-alt">
     <div class="sec-header reveal">
       <span class="sec-label">💚 Why Choose Us</span>
-      <h2 class="sec-title">Pure, Natural &amp; <span>Handcrafted</span></h2>
+      <h2 class="sec-title">Pure, Natural & <span>Handcrafted</span></h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
       <div class="value-item reveal">
@@ -715,7 +726,7 @@
       </div>
       <div class="value-item reveal">
         <div class="value-icon">🧈</div>
-        <div class="value-text"><h4>Pure Desi Ghee</h4><p>Our ghee products use only the finest cow &amp; buffalo ghee — no blends.</p></div>
+        <div class="value-text"><h4>Pure Desi Ghee</h4><p>Our ghee products use only the finest cow & buffalo ghee — no blends.</p></div>
       </div>
       <div class="value-item reveal">
         <div class="value-icon">🚚</div>
@@ -724,7 +735,6 @@
     </div>
   </section>
 
-  <!-- Reviews -->
   <section class="section">
     <div class="sec-header reveal">
       <span class="sec-label">💬 Customer Love</span>
@@ -749,7 +759,6 @@
     </div>
   </section>
 
-  <!-- CTA -->
   <section style="background:linear-gradient(135deg,var(--saffron),#e55d00);padding:64px 5%;text-align:center;">
     <h2 style="font-family:var(--font-head);font-size:clamp(1.8rem,4vw,3rem);font-weight:800;color:#fff;margin-bottom:12px;">Craving Something Crispy?</h2>
     <p style="color:rgba(255,255,255,.85);font-size:1rem;margin-bottom:32px;">Place your order now and get fresh snacks delivered to your doorstep!</p>
@@ -758,15 +767,13 @@
     </button>
   </section>
 
-</div><!-- /page-home -->
-
-<!-- ============================================================ -->
-<!-- PAGE: ABOUT -->
-<!-- ============================================================ -->
-<div class="page" id="page-about">
+</div><div class="page" id="page-about">
   <section class="section">
     <div class="about-grid">
-      <div class="about-visual reveal">🌾<br><span style="font-family:var(--font-head);font-size:1.2rem;color:var(--saffron);display:block;margin-top:12px;">Est. 2005</span></div>
+      <div class="about-visual reveal">
+        <img src="yellow-banana.jpg" alt="About Us Banner" style="width: 100%; height: 100%; object-fit: cover;">
+        <span style="font-family:var(--font-head);font-size:1.2rem;color:var(--saffron);display:block;margin-top:12px;">Est. 2005</span>
+      </div>
       <div class="about-content reveal">
         <span class="sec-label">📖 Our Story</span>
         <h2>From a Small Kitchen to <span style="color:var(--saffron)">Maharashtra's Heart</span></h2>
@@ -791,12 +798,11 @@
     </div>
   </section>
 
-  <!-- Proprietor -->
   <section class="section section-alt">
     <div class="proprietor-banner" style="border-radius:20px;max-width:800px;margin:0 auto;">
       <div class="prop-info">
         <strong>Vilas S. Bhirud</strong>
-        Proprietor &amp; Founder, Satvik Khandeshi<br>
+        Proprietor & Founder, Satvik Khandeshi<br>
         Shop No. 11, Ramdas Complex, Thakurli (E), Thane
       </div>
       <div class="prop-contact"><i class="fas fa-phone"></i> +91 – 91526 63963</div>
@@ -804,9 +810,6 @@
   </section>
 </div>
 
-<!-- ============================================================ -->
-<!-- PAGE: MENU -->
-<!-- ============================================================ -->
 <div class="page" id="page-menu">
   <section class="section">
     <div class="sec-header reveal">
@@ -816,9 +819,12 @@
     </div>
 
     <div class="menu-grid">
-      <!-- Yellow Banana Waffer -->
       <div class="menu-card reveal">
-        <div class="menu-thumb">🍌<div class="menu-veg"></div><div class="menu-tag">Best Seller</div></div>
+        <div class="menu-thumb">
+          <img src="yellow-banana.jpg" alt="Yellow Banana Waffer">
+          <div class="menu-veg"></div>
+          <div class="menu-tag">Best Seller</div>
+        </div>
         <div class="menu-info">
           <div class="menu-name">Yellow Banana Waffer</div>
           <div class="menu-desc">Thin, golden banana slices fried in refined oil to a perfectly light crisp. Lightly salted to let the natural sweetness shine through. Great as a tea-time or travel snack.</div>
@@ -829,12 +835,15 @@
         </div>
       </div>
 
-      <!-- Spicy Banana Waffer -->
       <div class="menu-card reveal">
-        <div class="menu-thumb">🌶️<div class="menu-veg"></div><div class="menu-tag">🔥 Spicy</div></div>
+        <div class="menu-thumb">
+          <img src="spicy waffers.jpg" alt="Spicy Banana Waffer">
+          <div class="menu-veg"></div>
+          <div class="menu-tag">🔥 Spicy</div>
+        </div>
         <div class="menu-info">
           <div class="menu-name">Spicy Banana Waffer</div>
-          <div class="menu-desc">Our classic banana waffer with an irresistible Khandeshi masala coating — red chilli, black pepper &amp; secret spice blend. Bold, fiery &amp; completely addictive.</div>
+          <div class="menu-desc">Our classic banana waffer with an irresistible Khandeshi masala coating — red chilli, black pepper & secret spice blend. Bold, fiery & completely addictive.</div>
           <div class="menu-footer">
             <div class="menu-price">₹65 <small style="font-size:.6rem;color:#aaa;font-weight:400;font-family:var(--font-body)">/200g</small></div>
             <button class="order-btn nav-link" data-page="order"><i class="fas fa-cart-plus"></i> Order</button>
@@ -842,12 +851,15 @@
         </div>
       </div>
 
-      <!-- Farsan -->
       <div class="menu-card reveal">
-        <div class="menu-thumb">🥜<div class="menu-veg"></div><div class="menu-tag">Festival Fav</div></div>
+        <div class="menu-thumb">
+          <img src="farsan.jpg" alt="Farsan Mix">
+          <div class="menu-veg"></div>
+          <div class="menu-tag">Festival Fav</div>
+        </div>
         <div class="menu-info">
           <div class="menu-name">Farsan Mix</div>
-          <div class="menu-desc">A festive mix of thin sev, mini chakli pieces, roasted peanuts, boondi &amp; dried dalia — spiced with turmeric, chilli &amp; jeera for a flavour-packed munch.</div>
+          <div class="menu-desc">A festive mix of thin sev, mini chakli pieces, roasted peanuts, boondi & dried dalia — spiced with turmeric, chilli & jeera for a flavour-packed munch.</div>
           <div class="menu-footer">
             <div class="menu-price">₹80 <small style="font-size:.6rem;color:#aaa;font-weight:400;font-family:var(--font-body)">/250g</small></div>
             <button class="order-btn nav-link" data-page="order"><i class="fas fa-cart-plus"></i> Order</button>
@@ -855,12 +867,15 @@
         </div>
       </div>
 
-      <!-- Bhajni Chakli -->
       <div class="menu-card reveal">
-        <div class="menu-thumb">🌀<div class="menu-veg"></div><div class="menu-tag">Traditional</div></div>
+        <div class="menu-thumb">
+          <img src="chakli.jpg" alt="Bhajni Chakli">
+          <div class="menu-veg"></div>
+          <div class="menu-tag">Traditional</div>
+        </div>
         <div class="menu-info">
           <div class="menu-name">Bhajni Chakli</div>
-          <div class="menu-desc">Hand-pressed spiral chaklis made from a special roasted multi-grain bhajni flour. Infused with sesame seeds, jeera &amp; ajwain for a deep, nutty, crispy crunch.</div>
+          <div class="menu-desc">Hand-pressed spiral chaklis made from a special roasted multi-grain bhajni flour. Infused with sesame seeds, jeera & ajwain for a deep, nutty, crispy crunch.</div>
           <div class="menu-footer">
             <div class="menu-price">₹100 <small style="font-size:.6rem;color:#aaa;font-weight:400;font-family:var(--font-body)">/300g</small></div>
             <button class="order-btn nav-link" data-page="order"><i class="fas fa-cart-plus"></i> Order</button>
@@ -868,12 +883,15 @@
         </div>
       </div>
 
-      <!-- Cow Ghee -->
       <div class="menu-card reveal">
-        <div class="menu-thumb">🐄<div class="menu-veg"></div><div class="menu-tag">Pure &amp; Natural</div></div>
+        <div class="menu-thumb">
+          <img src="cowghee.jpg" alt="Vikas Cow Ghee">
+          <div class="menu-veg"></div>
+          <div class="menu-tag">Pure & Natural</div>
+        </div>
         <div class="menu-info">
           <div class="menu-name">Vikas Cow Ghee</div>
-          <div class="menu-desc">Slow-churned from pure cow milk using the traditional bilona method. Bright golden, aromatic, and rich — the perfect addition to your rotis, dal &amp; khichdi.</div>
+          <div class="menu-desc">Slow-churned from pure cow milk using the traditional bilona method. Bright golden, aromatic, and rich — the perfect addition to your rotis, dal & khichdi.</div>
           <div class="menu-footer">
             <div class="menu-price">₹650 <small style="font-size:.6rem;color:#aaa;font-weight:400;font-family:var(--font-body)">/500ml</small></div>
             <button class="order-btn nav-link" data-page="order"><i class="fas fa-cart-plus"></i> Order</button>
@@ -881,12 +899,15 @@
         </div>
       </div>
 
-      <!-- Buffalo Ghee -->
       <div class="menu-card reveal">
-        <div class="menu-thumb">🐃<div class="menu-veg"></div><div class="menu-tag">Rich &amp; Creamy</div></div>
+        <div class="menu-thumb">
+          <img src="buffghee.jpg" alt="Vikas Buffalo Ghee">
+          <div class="menu-veg"></div>
+          <div class="menu-tag">Rich & Creamy</div>
+        </div>
         <div class="menu-info">
           <div class="menu-name">Vikas Buffalo Ghee</div>
-          <div class="menu-desc">Pure buffalo milk ghee — thick, creamy white, and intensely rich. Higher fat content makes it ideal for deep frying, sweets &amp; halwas. Authentic desi taste.</div>
+          <div class="menu-desc">Pure buffalo milk ghee — thick, creamy white, and intensely rich. Higher fat content makes it ideal for deep frying, sweets & halwas. Authentic desi taste.</div>
           <div class="menu-footer">
             <div class="menu-price">₹580 <small style="font-size:.6rem;color:#aaa;font-weight:400;font-family:var(--font-body)">/500ml</small></div>
             <button class="order-btn nav-link" data-page="order"><i class="fas fa-cart-plus"></i> Order</button>
@@ -897,9 +918,6 @@
   </section>
 </div>
 
-<!-- ============================================================ -->
-<!-- PAGE: GALLERY -->
-<!-- ============================================================ -->
 <div class="page" id="page-gallery">
   <section class="section">
     <div class="sec-header reveal">
@@ -908,25 +926,58 @@
       <p class="sec-sub">A glimpse into our shop, our process, and of course — our delicious snacks!</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item tall reveal" style="font-size:90px;">🍌<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item reveal">🌶️<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item reveal">🥜<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item reveal">🌀<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item reveal">🐄<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item wide reveal" style="font-size:100px;background:linear-gradient(135deg,#3D1C00,#5C2E00);">🏪<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item reveal">🧆<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item reveal">🍿<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item reveal">🌾<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item reveal">🧀<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item tall reveal" style="font-size:90px;background:linear-gradient(135deg,#ffe7c0,#ffd080);">🐃<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
-      <div class="gallery-item reveal">🥐<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+      <div class="gallery-item tall reveal">
+        <img src="yellow-banana.jpg" alt="Banana Waffers">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="spicy waffers.jpg" alt="Spicy Waffers">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="farsan.jpg" alt="Farsan">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="chakli.jpg" alt="Chakli">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="cowghee.jpg" alt="Cow Ghee">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item wide reveal">
+        <img src="yellow-banana.jpg" alt="Store Front" style="filter: brightness(0.8);">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="buffghee.jpg" alt="Buffalo Ghee">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="spicy waffers.jpg" alt="Spicy Snacks">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="farsan.jpg" alt="Mix Snacks">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="chakli.jpg" alt="Chakli Close-up">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item tall reveal">
+        <img src="cowghee.jpg" alt="Cow Ghee Pack">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="buffghee.jpg" alt="Ghee Pack">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
     </div>
   </section>
 </div>
 
-<!-- ============================================================ -->
-<!-- PAGE: ORDER -->
-<!-- ============================================================ -->
 <div class="page" id="page-order">
   <section class="section">
     <div class="sec-header reveal">
@@ -937,7 +988,7 @@
     <div class="order-container reveal">
       <div id="orderForm">
         <h2>Order Details</h2>
-        <p>* Required fields. We deliver within Thane &amp; Dombivli areas.</p>
+        <p>* Required fields. We deliver within Thane & Dombivli areas.</p>
         <div class="form-row">
           <div class="form-group">
             <label>Full Name <span>*</span></label>
@@ -988,9 +1039,6 @@
   </section>
 </div>
 
-<!-- ============================================================ -->
-<!-- PAGE: CONTACT -->
-<!-- ============================================================ -->
 <div class="page" id="page-contact">
   <section class="section">
     <div class="sec-header reveal">
@@ -1057,10 +1105,9 @@
   </section>
 </div>
 
-<!-- ========== SOCIAL STRIP (shown on all pages) ========== -->
 <div class="social-strip">
   <h3>Follow Us for Daily Updates 🍿</h3>
-  <p>Fresh stock arrivals, new flavours &amp; special offers — follow us!</p>
+  <p>Fresh stock arrivals, new flavours & special offers — follow us!</p>
   <div class="social-icons">
     <a href="https://instagram.com" target="_blank" class="social-icon si-insta"><i class="fab fa-instagram"></i></a>
     <a href="https://wa.me/919152663963" target="_blank" class="social-icon si-wa"><i class="fab fa-whatsapp"></i></a>
@@ -1068,12 +1115,11 @@
   </div>
 </div>
 
-<!-- ========== FOOTER ========== -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="logo">🌾 Satvik Khandeshi</div>
-      <p>Authentic Khandeshi snacks made with love, tradition &amp; the finest natural ingredients. Serving happiness since 2005.</p>
+      <p>Authentic Khandeshi snacks made with love, tradition & the finest natural ingredients. Serving happiness since 2005.</p>
       <br>
       <p style="color:rgba(255,255,255,.3);font-size:.8rem;">Proprietor: Vilas S. Bhirud</p>
     </div>
@@ -1106,12 +1152,10 @@
   </div>
 </footer>
 
-<!-- WhatsApp FAB -->
 <a href="https://wa.me/919152663963" target="_blank" class="wa-fab" title="Chat on WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
 
-<!-- Toast -->
 <div class="toast" id="toast"><span class="toast-emoji">🛒</span> <span id="toastMsg">Added to cart!</span></div>
 
 <script>
